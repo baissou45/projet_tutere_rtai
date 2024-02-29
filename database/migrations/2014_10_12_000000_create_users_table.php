@@ -19,7 +19,7 @@ return new class extends Migration
             $table->enum('sexe', ['h', 'f'])->nullable();
             $table->string('email')->unique();
             $table->string('password');
-            $table->enum('type', ['s', 'i'])->nullable()->default('i')->comment('I pour inspecteur et S pour sécretaire');
+            $table->enum('type', ['s', 'i', 'a'])->nullable()->default('i')->comment('I pour inspecteur, S pour sécretaire et A pour Admin');
             $table->foreignId('secretaire_id')->nullable()->constrained('users');
             $table->timestamps();
         });

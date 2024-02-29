@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class UserController extends Controller {
 
     public function index() {
-        $users = User::all();
+        $users = User::where('type', 's')->get();
         return view("users.index", compact('users'));
     }
 
@@ -22,6 +22,7 @@ class UserController extends Controller {
             "nom" => "required",
             "prenom" => "required",
             "email" => "required",
+            "tel" => "required",
             "password" => "required|confirmed",
         ], [
             "required" => "Ce champ est obligatoire",
@@ -35,7 +36,7 @@ class UserController extends Controller {
             "sexe" => $request->sexe,
             "tel" => $request->tel,
             "email" => $request->email,
-            "type" => 'i',
+            "type" => 's',
         ]);
 
         return redirect()->route('users.index')->with('success', "Utilisateur ajouter avec succès");
@@ -52,17 +53,46 @@ class UserController extends Controller {
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
+    public function edit(User $user) {
+        return view('users.edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
+    public function update(Request $request, User $user) {
+        $request->validate([
+            "nom" => "required",
+            "prenom" => "required",
+            "email" => "required",
+            "tel" => "required",
+        ], [
+            "required" => "Ce champ est obligatoire",
+        ]);
+
+        if ($request->password) {
+            $request->validate([
+                "password" => "required|confirmed",
+            ], [
+                "required" => "Ce champ est obligatoire",
+                "confirmed" => "Vous devez entrer des mots de passe identiques",
+            ]);
+
+            $user->update([
+                "password" => $request->password,
+            ]);
+        }
+
+        $user->update([
+            "nom" => $request->nom,
+            "prenom" => $request->prenom,
+            "sexe" => $request->sexe,
+            "tel" => $request->tel,
+            "email" => $request->email,
+            "type" => 's',
+        ]);
+
+        return redirect()->route('users.index')->with('success', "Utilisateur mis à jour avec succès");
     }
 
     /**

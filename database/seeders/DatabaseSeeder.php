@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
             "nom" => $faker->lastName,
             "prenom" => $faker->firstName,
             "password" => bcrypt('aaaaaaaa'),
-            "sexe" => 'h',
+            "sexe" => 'a',
             "tel" => $faker->phoneNumber,
             "email" => "a@a.aa",
             "type" => ['s', 'i', 'i', 'i'][random_int(0, 3)],

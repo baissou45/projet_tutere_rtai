@@ -39,13 +39,12 @@
                                 </td>
                                 <td>{{ $user->nom }}</td>
                                 <td>{{ $user->prenom }}</td>
-                                <td>{{ $user->sexe }}</td>
+                                <td>{{ $user->sexe == "h" ? "Homme" : "Femme" }}</td>
                                 <td>{{ $user->tel }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->created_at }}</td>
                                 <td class="d-flex justify-content-around">
-                                    <a href="#"> <i class="fa fa-eye text-primary" aria-hidden="true"></i> </a>
-                                    <a href="#"> <i class="fa fa-pencil text-secondary" aria-hidden="true"></i> </a>
+                                    <a href="{{ route('users.edit', $user->id) }}"> <i class="fa fa-pencil text-secondary" aria-hidden="true"></i> </a>
                                     <a onclick="show_alerte(`{{ route('users.destroy', $user->id) }}`)" class="waves-effect waves-light sa-warning"> <i class="fa fa-trash text-danger" aria-hidden="true"></i> </a>
                                 </td>
                             </tr>
