@@ -9,8 +9,8 @@ class DashboardController extends Controller {
 
     function index() {
 
-        $tournees = auth()->user()->tournees;
-        dd($tournees);
+        // $tournees = auth()->user()->tournees;
+        // dd($tournees);
 
         // $tournees = Tournee::where('date', '>', now()->subDays(7))->where('date', '<', now()->addDay())->get()->groupBy(function($p){
         //     return Carbon::parse($p->date)->format('d/m/y');
@@ -32,7 +32,7 @@ class DashboardController extends Controller {
 
         // dd($tournees_stats, $tournees);
 
-        // return view('dashboard', compact('tournees_stats'));
+        return view('dashboard');
     }
 
 }
