@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\TourneeApiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,10 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get("tournes/liste", [TourneeApiController::class, "index"])->middleware(["auth:sanctum"])->name("tournees.index");
+Route::get("tournes/show/{tournee}", [TourneeApiController::class, "show"])->middleware(["auth:sanctum"])->name("tournees.show");
 
-include __DIR__ .'/api/auth.php';
-include __DIR__ .'/api/tournees.php';
-include __DIR__ .'/api/rapports.php';
+Route::post("tournes/create", [TourneeApiController::class, "create"])->middleware(["auth:sanctum"])->name("tournees.create");

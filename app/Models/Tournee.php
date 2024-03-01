@@ -19,8 +19,8 @@ class Tournee extends Model {
         return $this->belongsTo(User::class, "inspecteur_id");
     }
 
-    public function rapport() {
-        return $this->hasOne(Rapport::class, "tornee_id");
+    public function rapports() {
+        return $this->hasMany(Rapport::class, "tournee_id", "id");
     }
 
 }

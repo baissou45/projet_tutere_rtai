@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\AuthApiController;
+use App\Http\Controllers\Api\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,10 +16,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-include __DIR__ .'/api/auth.php';
-include __DIR__ .'/api/tournees.php';
-include __DIR__ .'/api/rapports.php';
+Route::post("login", [AuthController::class, "login"])->name("login");
+Route::get("user_info", [AuthController::class, "user"])->middleware(["auth:sanctum"])->name("User Info");

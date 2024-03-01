@@ -21,6 +21,6 @@ class Rapport extends Model {
     }
 
     public function tournee() {
-        return $this->belongsTo(Tournee::class, "tornee_id");
+        return $this->belongsTo(Tournee::class, "tournee_id");
     }
 }

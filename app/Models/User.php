@@ -70,4 +70,12 @@ class User extends Authenticatable
     public function est_tranferer(){
         //
     }
+
+    public function tournees() {
+        return $this->hasMany(Tournee::class, 'inspecteur_id');
+    }
+
+    public function rapports() {
+        return $this->hasMany(Rapport::class, 'inspecteur_id');
+    }
 }
