@@ -1,12 +1,6 @@
 ## Installation des dépendaces
 ```
-composer install
-```
-
-ou
-
-```
-composer install
+composer install ou composer update
 ```
 
 ## Configuration de la base de données
@@ -26,4 +20,19 @@ php artisan migrate:fresh --seed
 
 ```
 php artisan serv
+```
+
+Le projet peut être consulter suivant le lien ci-après
+
+```
+http://localhost:8000/
+```
+
+
+## API
+
+L'api peut être consulter suivant le lien ci-après
+
+```
+http://localhost:8000/docs/api
 ```
