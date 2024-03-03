@@ -26,10 +26,10 @@ class DatabaseSeeder extends Seeder
             "nom" => $faker->lastName,
             "prenom" => $faker->firstName,
             "password" => bcrypt('aaaaaaaa'),
-            "sexe" => 'a',
+            "sexe" => ['h', 'f'][random_int(0, 1)],
             "tel" => $faker->phoneNumber,
             "email" => "a@a.aa",
-            "type" => ['s', 'i', 'i', 'i'][random_int(0, 3)],
+            "type" =>'a',
         ]);
 
         $inspecteurs = User::where('type', 'i')->get()->map(function($inspecteur) {
