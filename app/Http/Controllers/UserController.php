@@ -12,6 +12,11 @@ class UserController extends Controller {
         return view("users.index", compact('users'));
     }
 
+    public function inspecteur() {
+        $users = User::where('type', 'i')->get();
+        return view("users.inspecteur", compact('users'));
+    }
+
     public function create() {
         $user = null;
         return view('users.create', compact('user'));
