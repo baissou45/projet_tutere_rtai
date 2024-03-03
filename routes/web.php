@@ -24,6 +24,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+    Route::get('inspecteur', [UserController::class, 'inspecteur'])->name('users.inspecteur');
+
     // Liste des routes pour users
     Route::resource('users', UserController::class)->middleware('auth');
 
