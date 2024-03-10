@@ -27,7 +27,10 @@ Route::middleware('auth')->group(function () {
     Route::get('inspecteur', [UserController::class, 'inspecteur'])->name('users.inspecteur');
 
     // Liste des routes pour users
-    Route::resource('users', UserController::class)->middleware('auth');
+    Route::resource('users', UserController::class);
+    Route::get('trash', [UserController::class, 'trash'])->name('users.trash');
+    Route::post('trash-action', [UserController::class, 'trash_action'])->name('users.trash_action');
+
 
     // Liste des routes pour la gestion du profil
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

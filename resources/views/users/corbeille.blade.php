@@ -34,6 +34,7 @@
 
                     <thead>
                         <tr>
+                            <th></th>
                             <th class="col-1">Profile</th>
                             <th>Nom</th>
                             <th>Prénom</th>
@@ -47,23 +48,43 @@
 
 
                     <tbody>
-                        @foreach ($users as $user)
+                        <form action="{{ route('users.trash_action') }}" method="post">
+                           @csrf
+
+                            @foreach ($users as $user)
+                                <tr>
+                                    <td>
+                                        <input value="{{ $user->id }}" name="ids[]" type="checkbox">
+                                    </td>
+                                    <td>
+                                        <img src="{{ asset('template/back/assets/images/users/avatar-1.jpg') }}" class="rounded-circle" width="50%">
+                                    </td>
+                                    <td>{{ $user->nom }}</td>
+                                    <td>{{ $user->prenom }}</td>
+                                    <td>{{ $user->sexe == "h" ? "Homme" : "Femme" }}</td>
+                                    <td>{{ $user->tel }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $user->created_at }}</td>
+                                    <td class="d-flex justify-content-around">
+                                        <a href="{{ route('users.edit', $user->id) }}"> <i class="fa fa-pencil text-secondary" aria-hidden="true"></i> </a>
+                                        <a onclick="show_alerte(`{{ route('users.destroy', $user->id) }}`)" class="waves-effect waves-light sa-warning"> <i class="fa fa-trash text-danger" aria-hidden="true"></i> </a>
+                                    </td>
+                                </tr>
+                            @endforeach
                             <tr>
-                                <td>
-                                    <img src="{{ asset('template/back/assets/images/users/avatar-1.jpg') }}" class="rounded-circle" width="50%">
-                                </td>
-                                <td>{{ $user->nom }}</td>
-                                <td>{{ $user->prenom }}</td>
-                                <td>{{ $user->sexe == "h" ? "Homme" : "Femme" }}</td>
-                                <td>{{ $user->tel }}</td>
-                                <td>{{ $user->email }}</td>
-                                <td>{{ $user->created_at }}</td>
-                                <td class="d-flex justify-content-around">
-                                    <a href="{{ route('users.edit', $user->id) }}"> <i class="fa fa-pencil text-secondary" aria-hidden="true"></i> </a>
-                                    <a onclick="show_alerte(`{{ route('users.destroy', $user->id) }}`)" class="waves-effect waves-light sa-warning"> <i class="fa fa-trash text-danger" aria-hidden="true"></i> </a>
+                                <td colspan="9">
+                                    <div class="pull-right d-flex">
+                                        <select name="action" class="form-control col-7">
+                                            <option value="">Restaurer</option>
+                                            <option value="">Supprimer définitivement</option>
+                                        </select>
+
+                                        <input type="submit" class="btn btn-pink ml-3" value="Appliquer">
+                                    </div>
                                 </td>
                             </tr>
-                        @endforeach
+
+                        </form>
                     </tbody>
                 </table>
 

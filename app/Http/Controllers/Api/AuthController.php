@@ -13,6 +13,11 @@ class AuthController extends Controller {
 
     /**
      * @unauthenticated
+     *
+     * Connexion
+     *
+     * Il s'agit ici du endpoint à utiliser pour se connecter.
+     *
      */
     public function login(Request $request){
 
@@ -52,6 +57,13 @@ class AuthController extends Controller {
         }
     }
 
+    /**
+     *
+     * User Info
+     *
+     * Cet end point permet de récupérer les informations de l'utilisateur dont le token est passé à la requête.
+     *
+     */
     public function user(){
         return response()->json([
             "message" => "Connexion étan=blie avec succès",

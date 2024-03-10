@@ -25,7 +25,8 @@
                     </a>
                     <ul class="list-unstyled">
                         <li><a class="text-white" href="{{ route('users.index') }}">Liste</a></li>
-                        <li><a class="text-white" href="#">Nouvel utilisateur</a></li>
+                        <li><a class="text-white" href="{{ route('users.create') }}">Nouvel utilisateur</a></li>
+                        <li><a class="text-white" href="{{ route('users.trash') }}">Corbeille</a></li>
                     </ul>
                 </li>
 
