@@ -33,7 +33,7 @@ File: Calendar init js
                 });
 
             });
-            
+
             /* initialize the calendar */
 
             var date = new Date();

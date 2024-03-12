@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get("rapports/liste", [RapportApiController::class, "index"])->middleware(["auth:sanctum"])->name("tournees.index");
-Route::get("rapports/list/{tournee}", [RapportApiController::class, "tournee_index"])->middleware(["auth:sanctum"])->name("tournees.show");
-Route::get("rapports/show/{rapport}", [RapportApiController::class, "show"])->middleware(["auth:sanctum"])->name("tournees.show");
+Route::get("rapports/liste", [RapportApiController::class, "index"])->middleware(["auth:sanctum"])->name("rapports.index");
+Route::get("rapports/list/{tournee}", [RapportApiController::class, "tournee_index"])->middleware(["auth:sanctum"])->name("rapports.show");
+Route::get("rapports/show/{rapport}", [RapportApiController::class, "show"])->middleware(["auth:sanctum"])->name("rapports.show_tournee");
 
-Route::post("rapports/create", [RapportApiController::class, "create"])->middleware(["auth:sanctum"])->name("tournees.create");
+Route::post("rapports/create", [RapportApiController::class, "create"])->middleware(["auth:sanctum"])->name("rapports.create");
