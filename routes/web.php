@@ -27,6 +27,12 @@ Route::middleware('auth')->group(function () {
     // Liste des routes pour users
     Route::resource('users', UserController::class)->middleware('auth');
 
+
+    // Route tournees
+    Route::prefix('tournees')->group(function () {
+        Route::get('user', 'UserController@index')->name('user');
+    });
+
     // Liste des routes pour la gestion du profil
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
