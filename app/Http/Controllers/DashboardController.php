@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tournee;
-use Carbon\Carbon;
+use App\Models\Rapport;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\App;
 
 class DashboardController extends Controller {
 
@@ -31,8 +32,16 @@ class DashboardController extends Controller {
         // }
 
         // dd($tournees_stats, $tournees);
-
         return view('dashboard');
-    }
+        }
+
+
+        function show(Rapport $rapport) {
+            $tournee = $rapport->tournee;
+
+            $pdf = PDF::loadView('rapports.doc', compact('rapport', 'tournee'));
+            return $pdf->stream();
+        }
+
 
 }

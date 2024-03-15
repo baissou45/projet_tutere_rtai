@@ -56,28 +56,28 @@
     <link href="{{ asset('template/back/assets/css/icons.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('template/back/assets/css/style.css') }}" rel="stylesheet" type="text/css">
 
-        <!-- DataTables -->
-        <link href="{{ asset('template/back/assets/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset('template/back/assets/plugins/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
-        <!-- Responsive datatable examples -->
-        <link href="{{ asset('template/back/assets/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- DataTables -->
+    <link href="{{ asset('template/back/assets/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('template/back/assets/plugins/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- Responsive datatable examples -->
+    <link href="{{ asset('template/back/assets/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
 
-        <!-- Sweet Alert -->
-        <link href="{{ asset('template/back/assets/plugins/sweet-alert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css">
+    <!-- Sweet Alert -->
+    <link href="{{ asset('template/back/assets/plugins/sweet-alert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css">
 
     @yield('css')
-    @livewireStyles
+    {{-- @livewireStyles --}}
 
-        <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}">
-        <style>
-            .btn-orange {
-                background-color: #e97800;
-            }
-            .btn-orange:hover {
-                background-color: #ac5c06;
-                color: white
-            }
-        </style>
+    <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}">
+    <style>
+        .btn-orange {
+            background-color: #e97800;
+        }
+        .btn-orange:hover {
+            background-color: #ac5c06;
+            color: white
+        }
+    </style>
 
 </head>
 
@@ -208,8 +208,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.11/index.min.js" integrity="sha512-xCMh+IX6X2jqIgak2DBvsP6DNPne/t52lMbAUJSjr3+trFn14zlaryZlBcXbHKw8SbrpS0n3zlqSVmZPITRDSQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     @prepend('scripts')
         {{-- Push ApexCharts to the top of the scripts stack --}}
-        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-        <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
+        {{-- <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+        <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script> --}}
     @endprepend
 
 </body>

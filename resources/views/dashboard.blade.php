@@ -1,4 +1,4 @@
 @extends('layouts.app')
 <div>
-    @livewire('dash-component')
+    {{-- @livewire('dash-component') --}}
 </div>

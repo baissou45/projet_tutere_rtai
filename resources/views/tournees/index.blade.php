@@ -13,35 +13,7 @@
         <div class="card-body">
             <h2 class="card-title mb-3">Liste des tournées</h2>
 
-            <div class="row">
-                <div id='calendar' class="col-9"></div>
-
-                <div class="col-3">
-                    <h3 class="text-center mb-5"> Appliquer un filtre </h3>
-
-                    <div class="form-group">
-                        <label for="my-select">Inspecteur</label>
-                        <select id="my-select" class="form-control" name="">
-                            <option>Text</option>
-                        </select>
-                    </div>
-
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">Date début</span>
-                        </div>
-                        <input class="form-control" type="text" name="" placeholder="Recipient's text" aria-label="Recipient's text">
-                    </div>
-
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">Date fin</span>
-                        </div>
-                        <input class="form-control" type="text" name="" placeholder="Recipient's text" aria-label="Recipient's text">
-                    </div>
-                </div>
-            </div>
-
+            <div id='calendar'></div>
         </div>
     </div>
 @endsection

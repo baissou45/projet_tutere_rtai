@@ -18,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/rapports_doc/{rapport}', [DashboardController::class, 'show']);
+
+
 Route::get('/', [AuthenticatedSessionController::class, 'create']);
 
 
