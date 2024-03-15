@@ -30,6 +30,6 @@
         @enderror
     </div>
 
-    <x-input libelle="Mot de passe" type="password" required size="col-12 col-md-6" name="password"/>
-    <x-input libelle="Confirmer votre mot de passe" type="password" size="col-12 col-md-6" name="password_confirmation"/>
+    {{-- <x-input libelle="Mot de passe" type="password" required size="col-12 col-md-6" name="password"/>
+    <x-input libelle="Confirmer votre mot de passe" type="password" size="col-12 col-md-6" name="password_confirmation"/> --}}
 </div>

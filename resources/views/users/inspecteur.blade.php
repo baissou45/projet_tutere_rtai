@@ -7,38 +7,19 @@
             <div class="card-body">
 
 
-                <h5>Liste des utilisateurs</h5>
-                <p class="text-muted">Vous trouverez sur cette page, la liste des sécretaires</p>
-
-                <div class="d-flex justify-content-between align-items-center mb-3 ml-3">
-                    <div>
-                        <p class="text-muted">
-                            <strong class="text-success">Légende</strong> <br>
-                            <strong class="text-pink">Copy</strong> : Copier les données du tableau en format text <br>
-                            <strong class="text-pink">Excel</strong> : Expoeter les données du tableau au format excels (xlsx) <br>
-                            <strong class="text-pink">PDF</strong> : Expoeter les données du tableau au format pdf
-                        </p>
-                    </div>
-
-                    <div class="">
-                        <div class="d-flex justify-content-end mt-3 mr-3 mb-5">
-                            <a href="{{ route('users.trash') }}" class="btn btn-orange mr-2">
-                                <i class="fa fa-trash" aria-hidden="true"></i>
-                                Corbeille
-                            </a>
-                            <a href="{{ route('users.create') }}" class="btn btn-pink">
-                                <i class="fa fa-user-plus" aria-hidden="true"></i>
-                                Nouvel utilisateur
-                            </a>
-                        </div>
-                    </div>
+                {{-- <h5>Liste des artisants</h5> --}}
+                <div class="d-flex justify-content-end mt-3 mr-3 mb-5">
+                    <a href="{{ route('users.create') }}" class="btn btn-pink">
+                        <i class="fa fa-user-plus" aria-hidden="true"></i>
+                        Ajouter un inspecteur
+                    </a>
                 </div>
 
                 <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 
                     <thead>
                         <tr>
-                            <th class="col-1">Profile</th>
+                            <th class="col-1">Profil</th>
                             <th>Nom</th>
                             <th>Prénom</th>
                             <th>Sexe</th>

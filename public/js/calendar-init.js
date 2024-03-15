@@ -44,6 +44,7 @@ File: Calendar init js
             $('#calendar').fullCalendar({
                 header: {
                     left: 'prev,next today',
+                    title : "djknsf",
                     center: 'title',
                     right: 'month,basicWeek,basicDay'
                 },

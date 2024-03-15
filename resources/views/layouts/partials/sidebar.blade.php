@@ -25,7 +25,8 @@
                     </a>
                     <ul class="list-unstyled">
                         <li><a class="text-white" href="{{ route('users.index') }}">Liste</a></li>
-                        <li><a class="text-white" href="#">Nouvel utilisateur</a></li>
+                        <li><a class="text-white" href="{{ route('users.create') }}">Nouvel utilisateur</a></li>
+                        <li><a class="text-white" href="{{ route('users.trash') }}">Corbeille</a></li>
                     </ul>
                 </li>
 
@@ -35,8 +36,8 @@
                         <span class="text-white"> Inspecteurs <span class="float-right"><i class="mdi mdi-chevron-right text-white"></i></span> </span>
                     </a>
                     <ul class="list-unstyled">
-                        <li><a href="#">Liste</a></li>
-                        <li><a href="#">Nouvel utilisateur</a></li>
+                        <li><a href="{{ route('users.inspecteur') }}">Liste</a></li>
+                        <li><a href="#">Ajouter un inspecteur</a></li>
                     </ul>
                 </li>
 

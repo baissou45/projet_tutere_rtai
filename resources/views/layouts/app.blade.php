@@ -57,17 +57,26 @@
         <link href="{{ asset('template/back/assets/css/style.css') }}" rel="stylesheet" type="text/css">
 
         <!-- DataTables -->
-    <link href="{{ asset('template/back/assets/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('template/back/assets/plugins/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
-    <!-- Responsive datatable examples -->
-    <link href="{{ asset('template/back/assets/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('template/back/assets/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('template/back/assets/plugins/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+        <!-- Responsive datatable examples -->
+        <link href="{{ asset('template/back/assets/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
 
-    <!-- Sweet Alert -->
-    <link href="{{ asset('template/back/assets/plugins/sweet-alert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css">
+        <!-- Sweet Alert -->
+        <link href="{{ asset('template/back/assets/plugins/sweet-alert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css">
 
         @yield("css")
 
         <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}">
+        <style>
+            .btn-orange {
+                background-color: #e97800;
+            }
+            .btn-orange:hover {
+                background-color: #ac5c06;
+                color: white
+            }
+        </style>
 
     </head>
 

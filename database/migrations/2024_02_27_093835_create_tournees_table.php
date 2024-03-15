@@ -15,12 +15,13 @@ return new class extends Migration
         Schema::create('tournees', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('inspecteur_id')->nullable()->constrained('users');
+            $table->foreignId('inspecteur_id')->nullable();
 
             $table->string('adresse_complet');
             $table->timestamp('date');
             $table->string('etat');
 
+            $table->softDeletes();
             $table->timestamps();
         });
     }

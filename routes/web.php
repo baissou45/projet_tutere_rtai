@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TourneeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,13 +25,18 @@ Route::middleware('auth')->group(function () {
 
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+    Route::get('inspecteur', [UserController::class, 'inspecteur'])->name('users.inspecteur');
+
     // Liste des routes pour users
-    Route::resource('users', UserController::class)->middleware('auth');
+    Route::resource('users', UserController::class);
+    Route::get('users_trash', [UserController::class, 'trash'])->name('users.trash');
+    Route::post('trash-action', [UserController::class, 'trash_action'])->name('users.trash_action');
+
 
 
     // Route tournees
     Route::prefix('tournees')->group(function () {
-        Route::get('user', 'UserController@index')->name('user');
+        Route::get('/trash', [TourneeController::class, 'index'])->name('tournees.index');
     });
 
     // Liste des routes pour la gestion du profil

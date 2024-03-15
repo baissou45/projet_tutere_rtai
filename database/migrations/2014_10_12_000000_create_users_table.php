@@ -20,7 +20,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->enum('type', ['s', 'i', 'a'])->nullable()->default('i')->comment('I pour inspecteur, S pour sécretaire et A pour Admin');
-            $table->foreignId('secretaire_id')->nullable()->constrained('users');
+            $table->foreignId('secretaire_id')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
