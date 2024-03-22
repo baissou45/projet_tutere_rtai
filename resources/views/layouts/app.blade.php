@@ -161,6 +161,8 @@
     <script src="{{ asset('template/back/assets/plugins/sweet-alert2/sweetalert2.min.js') }}"></script>
     {{-- <script src="assets/pages/sweet-alert.init.js"></script> --}}
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     @yield('script')
     @livewireScripts
 
