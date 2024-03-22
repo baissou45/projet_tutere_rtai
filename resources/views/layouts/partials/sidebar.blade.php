@@ -60,8 +60,6 @@
                     <ul class="list-unstyled">
                         <li><a href="{{ route('statistiques.tournees') }}">Tournées</a></li>
                         <li><a href="{{ route('statistiques.rapports') }}">Rapports</a></li>
-                        <li><a href="">Transferts</a></li>
-
                     </ul>
                 </li>
 
