@@ -13,8 +13,7 @@ class PasswordResetLinkController extends Controller
     /**
      * Display the password reset link request view.
      */
-    public function create(): View
-    {
+    public function create(): View {
         return view('auth.forgot-password');
     }
 
@@ -37,8 +36,8 @@ class PasswordResetLinkController extends Controller
         );
 
         return $status == Password::RESET_LINK_SENT
-                    ? back()->with('status', __($status))
+                    ? back()->with('status', "Nous vous avons envoyé par e-mail le lien de réinitialisation de votre mot de passe.")
                     : back()->withInput($request->only('email'))
-                            ->withErrors(['email' => __($status)]);
+                            ->withErrors(['email' => 'Nous ne pouvons pas trouver un utilisateur avec cette adresse e-mail']);
     }
 }

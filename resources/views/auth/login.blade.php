@@ -32,7 +32,7 @@
 
                 <div class="form-group m-t-10 mb-0 row">
                     <div class="col-12 m-t-20 d-flex justify-content-center">
-                        <a href="pages-recoverpw.html" class="text-primary"> Mot de passe oublier ?</a>
+                        <a href="{{ route('password.email') }}" class="text-primary"> Mot de passe oublier ?</a>
                     </div>
                 </div>
             </form>
