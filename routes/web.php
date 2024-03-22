@@ -1,11 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\StatistiquesTourneesController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StatistiquesRapportsController;
+use App\Http\Controllers\StatistiquesTourneesController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +36,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     //liste des routes des statistiques
-    Route::any('/statistiques-tournees',[StatistiquesTourneesController::class, 'index'])->name('statistiques.tournees');
+    Route::any('/statistiques-tournees', [StatistiquesTourneesController::class, 'index'])->name('statistiques.tournees');
+
+    Route::any('/statistiques-rapports', [StatistiquesRapportsController::class, 'index'])->name('statistiques.rapports');
 
 });
 
