@@ -8,8 +8,40 @@
         }
     </style>
     <div class="container-fluid">
-        <h1 class="mb-4">Statistiques des Tournées</h1>
 
+        <div class="card shadow">
+            <div class="card-header">
+                <h1 class="mb-4">Statistiques des Tournées</h1>
+            </div>
+            <div class="card-body">
+
+                 <!-- Résumé des filtres appliqués -->
+        @if ($inspecteur_id || $date_debut || $date_fin)
+        <div class="alert alert-info row g-3 align-items-end" role="alert">
+            Filtres appliqués :
+            <div class="col-md">
+
+                @if ($inspecteur_id)
+                    Inspecteur : {{ $inspecteurs->where('id', $inspecteur_id)->first()->nom }}
+                    {{ $inspecteurs->where('id', $inspecteur_id)->first()->prenom }},
+                @endif
+            </div>
+            <div class="col-md">
+                @if ($date_debut)
+                    Date de début : {{ $date_debut }},
+                @endif
+            </div>
+            <div class="col-md">
+                @if ($date_fin)
+                    Date de fin : {{ $date_fin }},
+                @endif
+            </div>
+            <div class="col-md">
+                <a href="{{ route('statistiques.tournees') }}" class="btn btn-secondary">Effacer les filtres</a>
+            </div>
+        </div>
+    @endif
+                
         <!-- Formulaire de filtrage -->
         <form method="POST" action="{{ route('statistiques.tournees') }}" class="mb-4">
             @csrf
@@ -17,7 +49,7 @@
                 <!-- Filtre par inspecteur -->
                 <div class="col-md">
                     <label for="inspecteur_id" class="form-label">Inspecteur :</label>
-                    <select name="inspecteur_id" id="inspecteur_id" class="form-select">
+                    <select name="inspecteur_id" id="inspecteur_id" class="form-control">
                         <option value="">Tous les inspecteurs</option>
                         @foreach ($inspecteurs as $inspecteur)
                             <option value="{{ $inspecteur->id }}" {{ $inspecteur->id == $inspecteur_id ? 'selected' : '' }}>
@@ -46,68 +78,58 @@
                 </div>
             </div>
         </form>
-
-        <!-- Résumé des filtres appliqués -->
-        @if ($inspecteur_id || $date_debut || $date_fin)
-            <div class="alert alert-info row g-3 align-items-end" role="alert">
-                Filtres appliqués :
-                <div class="col-md">
-
-                    @if ($inspecteur_id)
-                        Inspecteur : {{ $inspecteurs->where('id', $inspecteur_id)->first()->nom }}
-                        {{ $inspecteurs->where('id', $inspecteur_id)->first()->prenom }},
-                    @endif
-                </div>
-                <div class="col-md">
-                    @if ($date_debut)
-                        Date de début : {{ $date_debut }},
-                    @endif
-                </div>
-                <div class="col-md">
-                    @if ($date_fin)
-                        Date de fin : {{ $date_fin }},
-                    @endif
-                </div>
-                <div class="col-md">
-                    <a href="{{ route('statistiques.tournees') }}" class="btn btn-secondary">Effacer les filtres</a>
-                </div>
             </div>
-        @endif
+        </div>
 
         <!-- Histogramme -->
-        <div class="mb-4">
-            <canvas id="histogramme" data-histogramme="{{ json_encode($histogramData) }}"></canvas>
+        <div class="card mt-3 shadow">
+            <div class="card-header">
+                <h2>Evolution des tournées</h2>
+            </div>
+            <div class="card-body">
+                <canvas id="histogramme" data-histogramme="{{ json_encode($histogramData) }}"></canvas>
+            </div>
         </div>
 
         <!-- Camembert et Tableau -->
-        <div class="row g-4">
+        <div class="row mt-3">
             <!-- Camembert -->
-            <div class="col-lg-6">
-                <canvas id="camembert" data-piechart="{{ json_encode($pieChartData) }}"></canvas>
+            <div class="card shadow col-4">
+                <div class="card-header">
+                    <h2>Statistiques des signatures</h2>
+                </div>
+                <div class="card-body">
+                    <canvas id="camembert" data-piechart="{{ json_encode($pieChartData) }}"></canvas>
+                </div>
             </div>
 
             <!-- Tableau des 5 dernières prospections -->
-            <div class="col-lg-6">
-                <h2>5 dernières prospections</h2>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Adresse</th>
-                            <th>État</th>
-                            <th>Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($prospections as $prospection)
+            <div class="card shadow offset-1 col-7">
+                <div class="card-header">
+                    <h2>5 dernières prospections</h2>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
                             <tr>
-                                <td>{{ $prospection->adresse_complet }}</td>
-                                <td>{{ $prospection->etat }}</td>
-                                <td>{{ $prospection->date }}</td>
+                                <th>Adresse</th>
+                                <th>État</th>
+                                <th>Date</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach ($prospections as $prospection)
+                                <tr>
+                                    <td>{{ $prospection->adresse_complet }}</td>
+                                    <td>{{ $prospection->etat }}</td>
+                                    <td>{{ $prospection->date }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
+
         </div>
     </div>
 
