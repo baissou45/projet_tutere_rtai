@@ -18,7 +18,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/rapports_doc/{ids}', [DashboardController::class, 'generer_rapport_ademe']);
+// Route::get('/rapports_zip/{ids}', [DashboardController::class, 'generer_rapport_ademe']);
+Route::get('/rapports_ademe', [DashboardController::class, 'generer_rapport_ademe']);
+Route::get('/rapports_doc/{rapport}', [DashboardController::class, 'generer_rapport']);
 
 
 // Route::get('/', [AuthenticatedSessionController::class, 'create']);
