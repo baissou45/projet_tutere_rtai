@@ -7,10 +7,10 @@
             <div class="card-body">
 
 
-                <h5>Liste des utilisateurs</h5>
-                <p class="text-muted">Vous trouverez sur cette page, la liste des sécretaires</p>
+                <h5>Liste des utilisateurs supprimés</h5>
+                <p class="text-muted">Vous trouverez sur cette page, la liste des sécretaires que vous avez supprimé. Vous pourrez les rrestaurés ou les supprimés déffinitivemeent.</p>
 
-                <div class="d-flex justify-content-between align-items-center mb-3 ml-3">
+                {{-- <div class="d-flex justify-content-between align-items-center mb-3 ml-3">
                     <div>
                         <p class="text-muted">
                             <strong class="text-success">Légende</strong> <br>
@@ -28,7 +28,7 @@
                             </a>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 
@@ -51,7 +51,7 @@
                         <form action="{{ route('users.trash_action') }}" method="post">
                            @csrf
 
-                            @foreach ($users as $user)
+                            @forelse ($users as $user)
                                 <tr>
                                     <td>
                                         <input value="{{ $user->id }}" name="ids[]" type="checkbox">
@@ -70,13 +70,17 @@
                                         <a onclick="show_alerte(`{{ route('users.destroy', $user->id) }}`)" class="waves-effect waves-light sa-warning"> <i class="fa fa-trash text-danger" aria-hidden="true"></i> </a>
                                     </td>
                                 </tr>
-                            @endforeach
+                            @empty
+                                <td colspan="9" class="text-center">
+                                    Aucune donnée
+                                </td>
+                            @endforelse
                             <tr>
                                 <td colspan="9">
                                     <div class="pull-right d-flex">
                                         <select name="action" class="form-control col-7">
-                                            <option value="">Restaurer</option>
-                                            <option value="">Supprimer définitivement</option>
+                                            <option value="r">Restaurer</option>
+                                            <option value="s">Supprimer définitivement</option>
                                         </select>
 
                                         <input type="submit" class="btn btn-pink ml-3" value="Appliquer">

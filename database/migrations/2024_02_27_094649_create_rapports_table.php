@@ -15,8 +15,8 @@ return new class extends Migration
         Schema::create('rapports', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('inspecteur_id')->constrained('users');
-            $table->foreignId('tournee_id')->constrained('tournees');
+            $table->foreignId('inspecteur_id');
+            $table->foreignId('tournee_id');
 
             $table->boolean('signature');
             $table->string('fichier_joint')->nullable();

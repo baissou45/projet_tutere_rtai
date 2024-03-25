@@ -22,6 +22,10 @@
 
                     <div class="">
                         <div class="d-flex justify-content-end mt-3 mr-3 mb-5">
+                            <a href="{{ route('users.trash') }}" class="btn btn-orange mr-2">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                Corbeille
+                            </a>
                             <a href="{{ route('users.create') }}" class="btn btn-pink">
                                 <i class="fa fa-user-plus" aria-hidden="true"></i>
                                 Nouvel utilisateur

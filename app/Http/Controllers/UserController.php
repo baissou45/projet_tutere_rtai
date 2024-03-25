@@ -144,12 +144,17 @@ class UserController extends Controller {
     }
 
     public function trash_action(Request $request) {
-        dd($request->all());
+
         foreach ($request->ids as $id) {
-            $user = User::withTrashed()->find($id);
+            if ($request->action == 's') {
+                 User::withTrashed()->find($id)->forceDelete();
+                }
+
+            if ($request->action == 'r'){
+                User::withTrashed()->find($id)->restore();
+            }
         }
 
-        $users = User::onlyTrashed()->get();
-        return view("users.corbeille", compact('users'));
+        return redirect()->route('users.trash')->with('success', 'Action effectuée avec succès');
     }
 }
