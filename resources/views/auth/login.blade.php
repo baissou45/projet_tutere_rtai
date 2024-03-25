@@ -22,7 +22,6 @@
 
             <form class="form-horizontal m-t-30" action="{{ route('login') }}" method="POST">
                 @csrf
-
                 <x-input libelle="Email" type="text" size="col-12" name="email" />
                 <x-input libelle="Mot de passe" type="password" size="col-12" name="password" />
 
