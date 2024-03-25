@@ -89,7 +89,7 @@ class UserController extends Controller {
         ], [
             "required" => "Ce champ est obligatoire",
         ]);
-
+    
         if ($request->password) {
             $request->validate([
                 "password" => "required|confirmed",
@@ -97,22 +97,40 @@ class UserController extends Controller {
                 "required" => "Ce champ est obligatoire",
                 "confirmed" => "Vous devez entrer des mots de passe identiques",
             ]);
-
+    
             $user->update([
                 "password" => bcrypt($request->password),
             ]);
         }
+    
+        // On vérifie si l'utilisateur est un inspecteur avant de mettre à jour
+        if ($user->type === 'i') {
+            $user->update([
+                "nom" => $request->nom,
+                "prenom" => $request->prenom,
+                "sexe" => $request->sexe,
+                "tel" => $request->tel,
+                "email" => $request->email,
+                // On ne change pas le type si c'est déjà un inspecteur
+                "type" => $user->type,
+            ]);
+        } else {
+            // Si l'utilisateur n'est pas un inspecteur, on met à jour le type
+            $user->update([
+                "nom" => $request->nom,
+                "prenom" => $request->prenom,
+                "sexe" => $request->sexe,
+                "tel" => $request->tel,
+                "email" => $request->email,
+                "type" => 's',
+            ]);
+        }
+    
+        $successMessage = $user->type === 'i' ? "Inspecteur mis à jour avec succès" : "Utilisateur mis à jour avec succès";
+        // On modifie la redirection en fonction de la page actuelle
+        $redirectRoute = $user->type === 'i' ? 'users.inspecteur' : 'users.index';
 
-        $user->update([
-            "nom" => $request->nom,
-            "prenom" => $request->prenom,
-            "sexe" => $request->sexe,
-            "tel" => $request->tel,
-            "email" => $request->email,
-            "type" => 's',
-        ]);
-
-        return redirect()->route('users.index')->with('success', "Utilisateur mis à jour avec succès");
+        return redirect()->route($redirectRoute)->with('success', $successMessage);
     }
 
     public function destroy(User $user) {

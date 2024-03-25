@@ -1,5 +1,5 @@
 <p class="d-flex justify-content-end my-3">
-    <i>Tous les champs marqués d'un <span class="text-danger">(*)</span> sont obligatoirs</i>
+    <i>Tous les champs marqués d'un <span class="text-danger">(*)</span> sont obligatoires</i>
 </p>
 
 <div class="row">
@@ -7,7 +7,7 @@
     <x-input libelle="Prénom" type="text" size="col-12 col-md-6" required name="prenom" value="{{ $user?->prenom }}" />
 
     <div class="form-group col-6">
-        <label for="sexe">sexe</label>
+        <label for="sexe">Sexe</label>
         <select name="sexe" id="sexe" class="form-control">
             <option value="h">Homme</option>
             <option value="f">Femme</option>
@@ -23,7 +23,7 @@
     <x-input libelle="Email" type="text" required size="col-12 col-md-6" name="email" value="{{ $user?->email }}" />
 
     <div class="form-group col-12 col-md-6">
-        <label for="profile_img">Photo de profile</label>
+        <label for="profile_img">Photo de profil</label>
         <input id="profile_img" class="form-control" type="file" name="profile_img">
         @error('profile_img')
             <small class="text-danger"> {{ $errors->first('profile_img') }} </small>
