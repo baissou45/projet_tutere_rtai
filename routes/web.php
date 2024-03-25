@@ -4,6 +4,8 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TourneeController;
+use App\Http\Controllers\StatistiquesRapportsController;
+use App\Http\Controllers\StatistiquesTourneesController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,7 +21,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [AuthenticatedSessionController::class, 'create']);
-
 
 Route::middleware('auth')->group(function () {
 
@@ -43,6 +44,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    //liste des routes des statistiques
+    Route::any('/statistiques-tournees', [StatistiquesTourneesController::class, 'index'])->name('statistiques.tournees');
+
+    Route::any('/statistiques-rapports', [StatistiquesRapportsController::class, 'index'])->name('statistiques.rapports');
+
 });
 
 require __DIR__.'/auth.php';
