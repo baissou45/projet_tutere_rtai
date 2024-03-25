@@ -48,8 +48,8 @@
                 </li>
 
                 <li>
-                    <a href="index.html" class="text-white waves-effect">
-                        <i class="text-white fa fa-calendar" aria-hidden="true"></i>
+                    <a href="{{ route('tournees.index') }}" class="waves-effect text-white">
+                        <i class="fa fa-calendar text-white" aria-hidden="true"></i>
                         <span> Tournées </span></a>
                 </li>
 

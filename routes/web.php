@@ -20,10 +20,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [AuthenticatedSessionController::class, 'create']);
+// Route::get('/rapports_zip/{ids}', [DashboardController::class, 'generer_rapport_ademe']);
+Route::get('/rapports_ademe', [DashboardController::class, 'generer_rapport_ademe']);
+Route::get('/rapports_doc/{rapport}', [DashboardController::class, 'generer_rapport']);
+
+
+// Route::get('/', [AuthenticatedSessionController::class, 'create']);
 
 Route::middleware('auth')->group(function () {
 
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('inspecteur', [UserController::class, 'inspecteur'])->name('users.inspecteur');
@@ -33,6 +39,9 @@ Route::middleware('auth')->group(function () {
     Route::get('users_trash', [UserController::class, 'trash'])->name('users.trash');
     Route::post('trash-action', [UserController::class, 'trash_action'])->name('users.trash_action');
 
+
+    Route::get('/rapports_generate/{rapport}', [DashboardController::class, 'generer_rapport'])->name('generer_rapport_ademe');
+    Route::get('/rapports_ademe', [DashboardController::class, 'generer_rapport_ademe'])->name('generer_rapport_ademe');
 
 
     // Route tournees
