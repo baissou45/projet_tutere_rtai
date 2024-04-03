@@ -4,12 +4,26 @@
 
 @section("content")
 
+@php
+    $route = null;
+    if(Route::currentRouteName() == "users.create"){
+        $route = "user";
+    } else {
+        $route = "inspecteur";
+    }
+@endphp
+
+
 <form action="{{ route('users.store') }}" method="post">
     @csrf
 
     <div class="card shadow">
         <div class="card-header">
-            Création d'un nouvel utilisateur
+            @if($route == "user")
+                Création d'un nouvel utilisateur
+            @else
+                Création d'un nouvel inspecteur
+            @endif
         </div>
         <div class="card-body">
 

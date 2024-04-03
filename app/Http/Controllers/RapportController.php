@@ -10,9 +10,9 @@ class RapportController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
+    public function index() {
+        $rapports = Rapport::all();
+        return view('rapports.index', compact('rapports'));
     }
 
     /**

@@ -32,7 +32,7 @@
     </div>
     <h1 style="position: absolute; top: 0; right: 50;">Agen Habitat</h1>
 
-    <h2 style="text-align: center; margin-top: 30%; margin-bottom: 10%">Rapport d'audit energetique</h2>
+    <h2 style="text-align: center; margin-top: 30%; margin-bottom: 15%">Rapport d'audit energetique</h2>
 
     <table style="width: 100%;">
         <tbody>
@@ -68,6 +68,17 @@
             </tr>
         </tbody>
     </table>
+
+    <div style="position: absolute; bottom: {{ $rapport->signature ? "50" : "150" }}; left: 0;">
+        <h5 style="margin-left: 50px">Signature client</h5>
+        @if ($rapport->signature)
+            <img src="{{ public_path('signature.png') }}" width="200px">
+        @endif
+    </div>
+
+    <div style="position: absolute; bottom: 50; right: 0;">
+        <img src="{{ public_path('cachet.png') }}" width="200px">
+    </div>
 
 </body>
 

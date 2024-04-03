@@ -36,13 +36,14 @@
                         <span class="text-white"> Inspecteurs <span class="float-right"><i class="text-white mdi mdi-chevron-right"></i></span> </span>
                     </a>
                     <ul class="list-unstyled">
-                        <li><a href="{{ route('users.inspecteur') }}">Liste</a></li>
-                        <li><a href="#">Ajouter un inspecteur</a></li>
+                        <li><a class="text-white" href="{{ route('users.inspecteur') }}">Liste</a></li>
+                        <li><a class="text-white" href="{{ route('inspecteur.create') }}">Ajouter un inspecteur</a></li>
+                        <li><a class="text-white" href="{{ route('inspecteur.trash') }}">Corbeille</a></li>
                     </ul>
                 </li>
 
                 <li>
-                    <a href="index.html" class="text-white waves-effect">
+                    <a href="{{ route('rapports.index') }}" class="text-white waves-effect">
                         <i class="text-white fa fa-files-o" aria-hidden="true"></i>
                         <span> Rapports </span></a>
                 </li>

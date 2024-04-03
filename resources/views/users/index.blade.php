@@ -49,7 +49,6 @@
                         </tr>
                     </thead>
 
-
                     <tbody>
                         @foreach ($users as $user)
                             <tr>
@@ -65,6 +64,7 @@
                                 <td class="d-flex justify-content-around">
                                     <a href="{{ route('users.edit', $user->id) }}"> <i class="fa fa-pencil text-secondary" aria-hidden="true"></i> </a>
                                     <a onclick="show_alerte(`{{ route('users.destroy', $user->id) }}`)" class="waves-effect waves-light sa-warning"> <i class="fa fa-trash text-danger" aria-hidden="true"></i> </a>
+                                    <a onclick="show_inspecteurs({{ json_encode($user->inspecteurs) }})" class="waves-effect waves-light sa-warning"> <i class="fa fa-list" aria-hidden="true"></i> </a>
                                 </td>
                             </tr>
                         @endforeach
@@ -75,4 +75,48 @@
         </div>
     </div> <!-- end col -->
 </div> <!-- end row -->
+
+<div id="my-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="my-modal-title">Liste des inspecteurs</h5>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-hover align-middle my_table datatable">
+                    <thead class="thead-inverse">
+                        <tr>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Sexe</th>
+                            <th>Contact</th>
+                        </tr>
+                        </thead>
+                        <tbody class="inspecteurs"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@endsection
+
+@section("script")
+    <script>
+        show_inspecteurs = (inspecteurs) => {
+            let liste = "";
+            inspecteurs.forEach(element => {
+                liste += `
+                    <tr>
+                        <td>${element.nom}</td>
+                        <td>${element.prenom}</td>
+                        <td>${element.sexe == "h" ? "Homme" : "Femme" }</td>
+                        <td>${element.tel}</td>
+                    </tr>
+                `
+            });
+            $('.inspecteurs').html(liste);
+            $('#my-modal').modal('show');
+        }
+    </script>
 @endsection

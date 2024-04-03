@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Rapport;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use ZipArchive;
 
@@ -44,11 +45,15 @@ class DashboardController extends Controller {
         return $pdf->stream();
     }
 
-    // function generer_rapport_ademe($idf) {
-    function generer_rapport_ademe() {
+    function generer_rapport_ademe(Request $request) {
         try {
-            // $files = $this->generate_pdf_files($idf);
-            $files = $this->generate_pdf_files([1, 2, 3, 4]);
+            if ($request->ids == null) {
+                return redirect()->back()->with('error', 'Vous devez sélectionner au moins un rapport');
+            } else if (count($request->ids) > 20) {
+                return redirect()->back()->with('error', 'Vous devez sélectionner 20 rapports au plus');
+            }
+
+            $files = $this->generate_pdf_files($request->ids);
             $zip = $this->generate_zip($files);
             $this->delete_pdf_files($files);
             return response()->download(public_path($zip))->deleteFileAfterSend();

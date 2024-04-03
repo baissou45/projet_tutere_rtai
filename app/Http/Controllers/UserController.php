@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
 class UserController extends Controller {
@@ -23,7 +24,8 @@ class UserController extends Controller {
 
     public function create() {
         $user = null;
-        return view('users.create', compact('user'));
+        $secretaires = User::where('type', 's')->get();
+        return view('users.create', compact('user', "secretaires"));
     }
 
     public function store(Request $request) {
@@ -74,7 +76,8 @@ class UserController extends Controller {
      * Show the form for editing the specified resource.
      */
     public function edit(User $user) {
-        return view('users.edit', compact('user'));
+        $secretaires = User::where('type', 's')->get();
+        return view('users.edit', compact('user', "secretaires"));
     }
 
     /**
@@ -125,9 +128,8 @@ class UserController extends Controller {
                 "type" => 's',
             ]);
         }
-    
+
         $successMessage = $user->type === 'i' ? "Inspecteur mis à jour avec succès" : "Utilisateur mis à jour avec succès";
-        // On modifie la redirection en fonction de la page actuelle
         $redirectRoute = $user->type === 'i' ? 'users.inspecteur' : 'users.index';
 
         return redirect()->route($redirectRoute)->with('success', $successMessage);
@@ -135,15 +137,29 @@ class UserController extends Controller {
 
     public function destroy(User $user) {
         $user->delete();
-        return redirect()->route('users.index')->with('success', "Utilisateur effacé avec succès");
+
+        $successMessage = $user->type === 'i' ? "Inspecteur effacé avec succès" : "Utilisateur effacé avec succès";
+        $redirectRoute = $user->type === 'i' ? 'users.inspecteur' : 'users.index';
+
+        return redirect()->route($redirectRoute)->with('success', $successMessage);
     }
 
     public function trash() {
-        $users = User::onlyTrashed()->get();
+        // Routename
+        if(Route::currentRouteName() == 'users.trash') {
+            $users = User::onlyTrashed()->where('type', 's')->get();
+        } else {
+            $users = User::onlyTrashed()->where('type', 'i')->get();
+        }
+
         return view("users.corbeille", compact('users'));
     }
 
     public function trash_action(Request $request) {
+
+        if($request->ids == null) {
+            return redirect()->back()->with('error', 'Aucun utilisateur sélectionné');
+        }
 
         foreach ($request->ids as $id) {
             if ($request->action == 's') {
@@ -155,6 +171,6 @@ class UserController extends Controller {
             }
         }
 
-        return redirect()->route('users.trash')->with('success', 'Action effectuée avec succès');
+        return redirect()->back()->with('success', 'Action effectuée avec succès');
     }
 }
