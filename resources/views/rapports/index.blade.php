@@ -7,30 +7,38 @@
             <div class="card-body">
 
 
-                <h5>Liste des utilisateurs</h5>
-                <p class="text-muted">Vous trouverez sur cette page, la liste des sécretaires</p>
-
+                <h5>Liste des rapports</h5>
                 <div class="d-flex justify-content-between align-items-center mb-3 ml-3">
-                    <div>
-                        <p class="text-muted">
-                            <strong class="text-success">Légende</strong> <br>
-                            <strong class="text-pink">Copy</strong> : Copier les données du tableau en format text <br>
-                            <strong class="text-pink">Excel</strong> : Expoeter les données du tableau au format excels (xlsx) <br>
-                            <strong class="text-pink">PDF</strong> : Expoeter les données du tableau au format pdf
-                        </p>
+                    <div class="">
+                        <p class="text-muted">Vous trouverez sur cette page, la liste des rapports de tournée</p>
+
+                        <div class="d-flex justify-content-between align-items-center mb-3 ml-3">
+                            <div>
+                                <p class="text-muted">
+                                    <strong class="text-success">Légende</strong> <br>
+                                    <strong class="text-pink">Copy</strong> : Copier les données du tableau en format text <br>
+                                    <strong class="text-pink">Excel</strong> : Expoeter les données du tableau au format excels (xlsx) <br>
+                                    <strong class="text-pink">PDF</strong> : Expoeter les données du tableau au format pdf
+                                </p>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="">
-                        <div class="d-flex justify-content-end mt-3 mr-3 mb-5">
-                            <a href="{{ route('users.trash') }}" class="btn btn-orange mr-2">
-                                <i class="fa fa-trash" aria-hidden="true"></i>
-                                Corbeille
-                            </a>
-                            <a href="{{ route('users.create') }}" class="btn btn-pink">
-                                <i class="fa fa-rapport-plus" aria-hidden="true"></i>
-                                Nouvel utilisateur
-                            </a>
-                        </div>
+                    <div class="col-4 border p-3 mb-2">
+                        <h5 class="mb-3">Appliquer un filtre</h5>
+                        <form action="{{ route('rapports.index') }}" method="get">
+                            <div class="form-group col-12">
+                                <label for="debut">Date début</label>
+                                <input id="debut" class="form-control" type="date" name="debut">
+                            </div>
+
+                            <div class="form-group col-12">
+                                <label for="debut">Date de fin</label>
+                                <input id="debut" class="form-control" type="date" name="fin">
+                            </div>
+
+                            <input type="submit" value="Filtrer" class="btn btn-pink pull-right">
+                        </form>
                     </div>
                 </div>
 
@@ -46,7 +54,6 @@
                                 <th> Tournée </th>
                                 <th> Signature </th>
                                 <th class="col-4"> Description </th>
-                                <th> Date </th>
                                 <th> Action </th>
                             </tr>
                         </thead>
@@ -64,7 +71,6 @@
                                     </td>
                                     <td> {{ $rapport->signature ? "Oui" : "Non" }} </td>
                                     <td> {{ $rapport->description }} </td>
-                                    <td>{{ $rapport->created_at }}</td>
                                     <td class="d-flex justify-content-around">
                                         <a target="_blanc" href="{{ route('rapports.generate_pdf', $rapport->id) }}"> <i class="fa fa-file-pdf-o fa-2x text-danger" aria-hidden="true"></i> </a>
                                     </td>

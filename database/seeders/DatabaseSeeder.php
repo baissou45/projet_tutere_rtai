@@ -44,10 +44,15 @@ class DatabaseSeeder extends Seeder
         Tournee::all()->map(function ($tournee) use ($faker, $inspecteurs) {
             $tournee->update([
                 'inspecteur_id' => $inspecteurs->pluck('id')->random(),
-                'etat' => 'Effectuer',
             ]);
 
             if (Carbon::parse($tournee->date)->isBefore(now())) {
+
+                if ($faker->numberBetween(0, 20) <= 19) {
+                    $tournee->update([
+                        'etat' => 'Effectuer',
+                    ]);
+                }
 
                 Rapport::create([
                     'signature' => $faker->boolean,

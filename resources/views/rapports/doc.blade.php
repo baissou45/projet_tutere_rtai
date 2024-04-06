@@ -41,7 +41,7 @@
                 <td> {{ $rapport->inspecteur->nom . ' ' . $rapport->inspecteur->prenom }} </td>
             </tr>
             <tr>
-                <td>Client</td>
+                <td>Locataire</td>
                 <td></td>
             <tr>
             </tr>

@@ -22,10 +22,12 @@
 
                     <div class="">
                         <div class="d-flex justify-content-end mt-3 mr-3 mb-5">
-                            <a href="{{ route('users.trash') }}" class="btn btn-orange mr-2">
-                                <i class="fa fa-trash" aria-hidden="true"></i>
-                                Corbeille
-                            </a>
+                            @if (auth()->user()->type == 'a')
+                                <a href="{{ route('users.trash') }}" class="btn btn-orange mr-2">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                    Corbeille
+                                </a>
+                            @endif
                             <a href="{{ route('users.create') }}" class="btn btn-pink">
                                 <i class="fa fa-user-plus" aria-hidden="true"></i>
                                 Nouvel utilisateur
@@ -44,6 +46,7 @@
                             <th>Sexe</th>
                             <th>Contact</th>
                             <th>Adresse mail</th>
+                            <th>Nbr Inspecteurs</th>
                             <th>Date création</th>
                             <th>Action</th>
                         </tr>
@@ -60,11 +63,12 @@
                                 <td>{{ $user->sexe == "h" ? "Homme" : "Femme" }}</td>
                                 <td>{{ $user->tel }}</td>
                                 <td>{{ $user->email }}</td>
+                                <td class="text-center">{{ $user->inspecteurs->count() }}</td>
                                 <td>{{ $user->created_at }}</td>
                                 <td class="d-flex justify-content-around">
                                     <a href="{{ route('users.edit', $user->id) }}"> <i class="fa fa-pencil text-secondary" aria-hidden="true"></i> </a>
-                                    <a onclick="show_alerte(`{{ route('users.destroy', $user->id) }}`)" class="waves-effect waves-light sa-warning"> <i class="fa fa-trash text-danger" aria-hidden="true"></i> </a>
-                                    <a onclick="show_inspecteurs({{ json_encode($user->inspecteurs) }})" class="waves-effect waves-light sa-warning"> <i class="fa fa-list" aria-hidden="true"></i> </a>
+                                    <a onclick="show_alerte(`{{ route('users.destroy', $user->id) }}`)" href="#" class="waves-effect waves-light sa-warning"> <i class="fa fa-trash text-danger" aria-hidden="true"></i> </a>
+                                    <a onclick="show_inspecteurs({{ json_encode($user->inspecteurs) }})" href="#" class="waves-effect waves-light sa-warning"> <i class="fa fa-list" aria-hidden="true"></i> </a>
                                 </td>
                             </tr>
                         @endforeach
@@ -83,7 +87,7 @@
                 <h5 class="modal-title" id="my-modal-title">Liste des inspecteurs</h5>
             </div>
             <div class="modal-body">
-                <table class="table table-striped table-hover align-middle my_table datatable">
+                <table class="table table-striped table-hover align-middle my_table" id="datatable">
                     <thead class="thead-inverse">
                         <tr>
                             <th>Nom</th>

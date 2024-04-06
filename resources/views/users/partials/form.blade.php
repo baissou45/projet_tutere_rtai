@@ -50,10 +50,11 @@
 
     @if($route != "user")
         <div class="form-group col-md-4">
-            <label for="inspecteur">Inspecteur</label>
-            <select id="inspecteur" class="form-control select2" name="inspecteur">
+            <label for="secretaire">Secrétaire</label>
+            <select id="secretaire" class="form-control select2" name="secretaire">
+                <option>Veuillez choisir un secretaire</option>
                 @foreach ($secretaires as $s)
-                    <option value="{{ $s->id }}"> {{ $s->nom . ' ' . $s->prenom }} </option>
+                    <option value="{{ $s->id }}" {{ $s->id == $user?->secretaire_id ? "selected" : "" }} > {{ $s->nom . ' ' . $s->prenom }} </option>
                 @endforeach
             </select>
         </div>
@@ -68,7 +69,5 @@
     <script src="{{ asset('template/back/assets/plugins/select2/js/select2.min.js') }}"></script>
     <script>
         $(".select2").select2();
-        // select2 height to 70
-        
     </script>
 @endsection

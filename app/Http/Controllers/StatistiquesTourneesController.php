@@ -9,8 +9,7 @@ use Illuminate\Http\Request;
 
 class StatistiquesTourneesController extends Controller
 {
-    public function index(Request $request)
-    {
+    public function index(Request $request) {
         // Récupérer les paramètres de filtrage
         $inspecteur_id = $request->input('inspecteur_id');
         $date_debut = $request->input('date_debut') ? Carbon::parse($request->input('date_debut')) : null;
@@ -63,7 +62,7 @@ class StatistiquesTourneesController extends Controller
         $tableData = $query->latest('date')->get();
 
         // Récupérer les 5 dernières prospections
-        $prospections = Tournee::latest('date')->take(5)->get();
+        $prospections = Tournee::latest('date')->take(6)->get();
 
         // Récupérer les inspecteurs pour le filtre dans la vue
         $inspecteurs = User::where('type', 'i')->orderBy('nom')->get();

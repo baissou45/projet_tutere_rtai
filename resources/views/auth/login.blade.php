@@ -12,12 +12,12 @@
 
         @if ($errors->any())
             <div class="alert alert-danger" role="alert">
-                <h4 class="text-center"> Une erreure est survenue </h4>
+                <p class="text-center"> Une erreure est survenue </p>
             </div>
         @endif
 
         <div class="p-3">
-            <h4 class="text-muted font-18 m-b-5 text-center">Bon retour !</h4>
+            <p class="text-muted font-18 m-b-5 text-center">Bon retour !</p>
             <p class="text-muted text-center">Veuillez vous connectez</p>
 
             <form class="form-horizontal m-t-30" action="{{ route('login') }}" method="POST">
@@ -27,7 +27,7 @@
                 <x-input libelle="Mot de passe" type="password" size="col-12" name="password" />
 
                 <div class="form-group row m-t-20 d-flex justify-content-center">
-                        <button class="btn btn-pink w-md waves-effect waves-light" type="submit">Connexion</button>
+                    <button class="btn btn-pink w-md waves-effect waves-light" type="submit">Connexion</button>
                 </div>
 
                 <div class="form-group m-t-10 mb-0 row">

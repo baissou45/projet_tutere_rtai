@@ -3709,7 +3709,8 @@ body.fixed-left .side-menu.left {
 
 .header-bg {
   /* background: #eff3f6 fixed; */
-  background: radial-gradient(at 50% -20%, #1967a9, #0a1832) fixed;
+  /* background: radial-gradient(at 50% -20%, #1967a9, #0a1832) fixed; */
+  background: radial-gradient(at 50% -20%, #C019BF, #0a1832) fixed;
   padding-bottom: 60px;
   -webkit-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.1);
           box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.1);

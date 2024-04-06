@@ -166,7 +166,7 @@
     <script src="{{ asset('template/back/assets/plugins/sweet-alert2/sweetalert2.min.js') }}"></script>
     {{-- <script src="assets/pages/sweet-alert.init.js"></script> --}}
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> --}}
 
     @yield('script')
     @livewireScripts
@@ -183,6 +183,10 @@
                 toastr.warning('{{ Session::get('warning') }}');
             @endif
         });
+
+        logout = () => {
+            $('#dec_form').submit();
+        }
 
         show_alerte = (route) => {
             $('.sa-warning').click(function() {

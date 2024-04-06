@@ -58,22 +58,8 @@
         Dashboard.prototype.init = function () {
 
             //creating bar chart
-            var $barData = [
-                {y: '2006', a: 10, b: 90},
-                {y: '2007', a: 75, b: 65},
-                {y: '2008', a: 50, b: 40},
-                {y: '2009', a: 75, b: 65},
-                {y: '2010', a: 50, b: 40},
-                {y: '2011', a: 75, b: 65},
-                {y: '2012', a: 100, b: 90},
-                {y: '2013', a: 90, b: 75},
-                {y: '2014', a: 75, b: 65},
-                {y: '2015', a: 50, b: 40},
-                {y: '2016', a: 75, b: 65},
-                {y: '2017', a: 100, b: 90},
-                {y: '2018', a: 90, b: 75}
-            ];
-            this.createBarChart('morris-bar-example', $barData, 'y', ['a', 'b'], ['Series A', 'Series B'], ['#2f8ee0','#4bbbce']);
+            var $barData = data;
+            this.createBarChart('morris-bar-example', $barData, 'y', ['a', 'b'], ['Total', 'Effectuer'], ['#d15542','#a2c946']);
 
             //creating area chart
             var $areaData = [
@@ -85,7 +71,7 @@
                 {y: '2012', a: 75, b: 240, c:120},
                 {y: '2013', a: 30, b: 30, c:30}
             ];
-            this.createAreaChart('morris-area-example', 0, 0, $areaData, 'y', ['a', 'b', 'c'], ['Series A', 'Series B', 'Series C'], ['#ccc', '#2f8ee0', '#4bbbce']);
+            this.createAreaChart('morris-area-example', 0, 0, data_semaine, 'y', ['a', 'b'], ['Total', 'Effectuer'], ['#d15542', '#a2c946']);
 
             //creating donut chart
             var $donutData = [

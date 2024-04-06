@@ -3,6 +3,14 @@
 @section("title", "Modifier un Utilisateur")
 
 @section("content")
+@php
+    $route = null;
+    if(Route::currentRouteName() == "users.create"){
+        $route = "user";
+    } else {
+        $route = "inspecteur";
+    }
+@endphp
 
 <form action="{{ route('users.update', $user->id) }}" method="post">
     @method("PATCH")

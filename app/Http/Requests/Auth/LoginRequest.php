@@ -88,7 +88,7 @@ class LoginRequest extends FormRequest
 
     public function inspecteurAccessControle() {
         $user = User::where('email', $this->email)->first();
-        if ($user->type == 'i') {
+        if (!$user || $user->type == 'i') {
             throw ValidationException::withMessages([
                 'email' => trans("Vous n'êtes pas habilité à accéder à cette application"),
             ]);

@@ -22,8 +22,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Route::get('/rapports_zip/{ids}', [DashboardController::class, 'generer_rapport_ademe']);
-Route::get('/rapports_ademe', [DashboardController::class, 'generer_rapport_ademe']);
-Route::get('/rapports_doc/{rapport}', [DashboardController::class, 'generer_rapport']);
+// Route::get('/rapports_ademe', [DashboardController::class, 'generer_rapport_ademe']);
+// Route::get('/rapports_doc/{rapport}', [DashboardController::class, 'generer_rapport']);
 
 
 // Route::get('/', [AuthenticatedSessionController::class, 'create']);
@@ -36,6 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::get('inspecteur', [UserController::class, 'inspecteur'])->name('users.inspecteur');
     Route::get('inspecteur_trash', [UserController::class, 'trash'])->name('inspecteur.trash');
     Route::get('inspecteur/create', [UserController::class, 'create'])->name('inspecteur.create');
+    Route::post('inspecteur/affectatiion', [UserController::class, 'inspecteur_affectatiion'])->name('inspecteur.affectatiion');
 
 
     // Liste des routes pour users
@@ -45,13 +46,13 @@ Route::middleware('auth')->group(function () {
 
 
     Route::get('rapports', [RapportController::class, 'index'])->name('rapports.index');
-    Route::get('/rapports_generate/{rapport}', [DashboardController::class, 'generer_rapport'])->name('rapports.generate_pdf');
-    Route::post('/rapports_ademe', [DashboardController::class, 'generer_rapport_ademe'])->name('rapports.generate_pdf_ademe');
+    Route::get('/rapports_generate/{rapport}', [RapportController::class, 'generer_rapport'])->name('rapports.generate_pdf');
+    Route::post('/rapports_ademe', [RapportController::class, 'generer_rapport_ademe'])->name('rapports.generate_pdf_ademe');
 
 
     // Route tournees
     Route::prefix('tournees')->group(function () {
-        Route::get('/trash', [TourneeController::class, 'index'])->name('tournees.index');
+        Route::get('/', [TourneeController::class, 'index'])->name('tournees.index');
     });
 
     // Liste des routes pour la gestion du profil

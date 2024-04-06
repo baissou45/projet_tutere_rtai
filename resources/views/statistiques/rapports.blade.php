@@ -81,7 +81,7 @@
         <!-- Diagramme en ligne -->
         <div class="card shadow my-4">
             <div class="card-header">
-                <h3>Evolution des tournées</h3>
+                <h3>Taux de signature</h3>
             </div>
             <div class="card-body">
                 <canvas id="diagramme-ligne"></canvas>

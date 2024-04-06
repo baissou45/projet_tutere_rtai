@@ -63,12 +63,20 @@ class User extends Authenticatable {
 
     // Voir l'historique des transferts d'un inspecteur
     public function inspecteur_tranferts(){
-        return $this->hasMany(Transfert::class, 'inspecteur_id');
+        return $this->hasMany(Transfert::class, 'inspecteur_id', 'id');
     }
 
     // Savoir si un inspecteur est actuellement tranférer
-    public function est_tranferer(){
-        //
+    public function new_inspecteur(){
+        $transferts = $this->inspecteur_tranferts;
+
+        if ($transferts->count() > 0 && now()->isBetween($transferts->last()->date_debut, $transferts->last()->date_fin)){
+            $secretaire = $transferts->last()->newSecretaire;
+            $secretaire["fin_transfert"] = now()->diffInDays($transferts->last()->date_fin);
+            return $secretaire;
+        } else {
+            return null;
+        }
     }
 
     public function tournees() {

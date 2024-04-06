@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\UserCreatedMail;
+use App\Models\Transfert;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -18,8 +19,18 @@ class UserController extends Controller {
     }
 
     public function inspecteur() {
-        $users = User::where('type', 'i')->get();
-        return view("users.inspecteur", compact('users'));
+        $users = User::query()->where('type', 'i');
+
+        if (auth()->user()->type == 's') {
+            $users->where('secretaire_id', auth()->user()->id)->orWhereHas('inspecteur_tranferts', function($s){
+                return $s->where('secretaire_id', auth()->user()->id)->where('date_debut', '<=', now())->where('date_fin', '>=', now());
+            });
+        }
+
+        $users = $users->get();
+
+        $secretaires = User::where('type', 's')->get();
+        return view("users.inspecteur", compact('users', 'secretaires'));
     }
 
     public function create() {
@@ -54,22 +65,30 @@ class UserController extends Controller {
             "sexe" => $request->sexe,
             "tel" => $request->tel,
             "email" => $request->email,
-            "type" => 's',
+            "type" => $request->secretaire ? 'i' : 's',
+            "secretaire_id" => $request->secretaire
         ]);
 
         Mail::to($user->email)->send(new UserCreatedMail($user, $pass));
 
-        DB::commit();
+        $successMessage = $request->secretaire ? "Inspecteur créer avec succès" : "Utilisateur créer avec succès";
+        $redirectRoute = $request->secretaire ? 'users.inspecteur' : 'users.index';
 
-        return redirect()->route('users.index')->with('success', "Utilisateur ajouter avec succès");
+        DB::commit();
+        return redirect()->route($redirectRoute)->with('success', $successMessage);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+    public function inspecteur_affectatiion(Request $request) {
+
+        Transfert::create([
+            "inspecteur_id" => $request->inspecteur,
+            "secretaire_id" => $request->secretaire,
+            "date_debut" => $request->debut,
+            "date_fin" => $request->fin,
+            "description" => $request->description,
+        ]);
+
+        return redirect()->back()->with("success", "Inspecteur tranférer avec succès");
     }
 
     /**

@@ -17,7 +17,7 @@ class TourneeFactory extends Factory {
     public function definition(): array {
         return [
             "adresse_complet" => $this->faker->address,
-            "date" => Carbon::now()->addDay(mt_rand(-60, 14)),
+            "date" => Carbon::now()->addDay(mt_rand(-120, 21)),
             "etat" => ['Programmer', 'Non Effectuer', "Effectuer", "Annuler"][random_int(0, 3)],
         ];
     }

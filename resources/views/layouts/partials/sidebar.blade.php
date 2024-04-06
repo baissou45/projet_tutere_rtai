@@ -4,7 +4,6 @@
     <!-- LOGO -->
     <div class="topbar-left">
         <div class="mt-2">
-            <!--<a href="index.html" class="text-center logo">Fonik</a>-->
             <a href="{{ route('dashboard') }}" class="logo"><img src="{{ asset('logo.png') }}" class="w-50" alt="logo"></a>
         </div>
     </div>
@@ -13,11 +12,12 @@
         <div id="sidebar-menu" class="mt-4">
             <ul>
                 <li>
-                    <a href="index.html" class="text-white waves-effect">
+                    <a href="{{ route('dashboard') }}" class="text-white waves-effect">
                         <i class="text-white fa fa-home" aria-hidden="true"></i>
                         </i><span> Accueil </span></a>
                 </li>
 
+                @if (auth()->user()->type == 'a')
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect">
                         <i class="text-white dripicons-user-group"></i>
@@ -29,6 +29,7 @@
                         <li><a class="text-white" href="{{ route('users.trash') }}">Corbeille</a></li>
                     </ul>
                 </li>
+                @endif
 
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect">
@@ -37,8 +38,10 @@
                     </a>
                     <ul class="list-unstyled">
                         <li><a class="text-white" href="{{ route('users.inspecteur') }}">Liste</a></li>
-                        <li><a class="text-white" href="{{ route('inspecteur.create') }}">Ajouter un inspecteur</a></li>
-                        <li><a class="text-white" href="{{ route('inspecteur.trash') }}">Corbeille</a></li>
+                        @if (auth()->user()->type == 'a')
+                            <li><a class="text-white" href="{{ route('inspecteur.create') }}">Ajouter un inspecteur</a></li>
+                            <li><a class="text-white" href="{{ route('inspecteur.trash') }}">Corbeille</a></li>
+                        @endif
                     </ul>
                 </li>
 
@@ -51,9 +54,10 @@
                 <li>
                     <a href="{{ route('tournees.index') }}" class="waves-effect text-white">
                         <i class="fa fa-calendar text-white" aria-hidden="true"></i>
-                        <span> Tournées </span></a>
+                        <span> Inspections </span></a>
                 </li>
 
+                @if (auth()->user()->type == 'a')
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect">
                         <i class="text-white fa fa-bar-chart" aria-hidden="true"></i>
@@ -64,8 +68,9 @@
                         <li><a href="{{ route('statistiques.rapports') }}">Rapports</a></li>
                     </ul>
                 </li>
-
+                @endif
             </ul>
+            
         </div>
         <div class="clearfix"></div>
     </div> <!-- end sidebarinner -->

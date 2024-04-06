@@ -39,13 +39,13 @@
 
         @if ($errors->any())
             <div class="alert alert-danger" role="alert">
-                <h4 class="text-center"> Une erreure est survenue </h4>
+                <p class="text-center"> Une erreure est survenue </p>
             </div>
         @endif
 
         @if (session('status'))
             <div class="alert alert-success" role="alert">
-                <h4 class="text-center"> {{ session('status') }} </h4>
+                <p class="text-center"> {{ session('status') }} </p>
             </div>
         @endif
 

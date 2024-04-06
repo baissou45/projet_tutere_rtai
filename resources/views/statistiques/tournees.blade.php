@@ -1,12 +1,15 @@
 @extends('layouts.app')
 
+@section("css")
+<style>
+    #histogramme {
+        height: 3vh;
+        /* Ajustez cette valeur selon vos besoins */
+    }
+</style>
+@endsection
+
 @section('content')
-    <style>
-        #histogramme {
-            height: 30%;
-            /* Ajustez cette valeur selon vos besoins */
-        }
-    </style>
     <div class="container-fluid">
 
         <div class="card shadow">
@@ -16,68 +19,68 @@
             <div class="card-body">
 
                  <!-- Résumé des filtres appliqués -->
-        @if ($inspecteur_id || $date_debut || $date_fin)
-        <div class="alert alert-info row g-3 align-items-end" role="alert">
-            Filtres appliqués :
-            <div class="col-md">
+                @if ($inspecteur_id || $date_debut || $date_fin)
+                <div class="alert alert-info row g-3 align-items-end" role="alert">
+                    Filtres appliqués :
+                    <div class="col-md">
 
-                @if ($inspecteur_id)
-                    Inspecteur : {{ $inspecteurs->where('id', $inspecteur_id)->first()->nom }}
-                    {{ $inspecteurs->where('id', $inspecteur_id)->first()->prenom }},
-                @endif
-            </div>
-            <div class="col-md">
-                @if ($date_debut)
-                    Date de début : {{ $date_debut }},
-                @endif
-            </div>
-            <div class="col-md">
-                @if ($date_fin)
-                    Date de fin : {{ $date_fin }},
-                @endif
-            </div>
-            <div class="col-md">
-                <a href="{{ route('statistiques.tournees') }}" class="btn btn-secondary">Effacer les filtres</a>
-            </div>
-        </div>
-    @endif
-                
-        <!-- Formulaire de filtrage -->
-        <form method="POST" action="{{ route('statistiques.tournees') }}" class="mb-4">
-            @csrf
-            <div class="row g-3 align-items-end">
-                <!-- Filtre par inspecteur -->
-                <div class="col-md">
-                    <label for="inspecteur_id" class="form-label">Inspecteur :</label>
-                    <select name="inspecteur_id" id="inspecteur_id" class="form-control">
-                        <option value="">Tous les inspecteurs</option>
-                        @foreach ($inspecteurs as $inspecteur)
-                            <option value="{{ $inspecteur->id }}" {{ $inspecteur->id == $inspecteur_id ? 'selected' : '' }}>
-                                {{ $inspecteur->nom }} {{ $inspecteur->prenom }}</option>
-                        @endforeach
-                    </select>
+                        @if ($inspecteur_id)
+                            Inspecteur : {{ $inspecteurs->where('id', $inspecteur_id)->first()->nom }}
+                            {{ $inspecteurs->where('id', $inspecteur_id)->first()->prenom }},
+                        @endif
+                    </div>
+                    <div class="col-md">
+                        @if ($date_debut)
+                            Date de début : {{ $date_debut }},
+                        @endif
+                    </div>
+                    <div class="col-md">
+                        @if ($date_fin)
+                            Date de fin : {{ $date_fin }},
+                        @endif
+                    </div>
+                    <div class="col-md">
+                        <a href="{{ route('statistiques.tournees') }}" class="btn btn-secondary">Effacer les filtres</a>
+                    </div>
                 </div>
+            @endif
+                        
+                <!-- Formulaire de filtrage -->
+                <form method="POST" action="{{ route('statistiques.tournees') }}" class="mb-4">
+                    @csrf
+                    <div class="row g-3 align-items-end">
+                        <!-- Filtre par inspecteur -->
+                        <div class="col-md">
+                            <label for="inspecteur_id" class="form-label">Inspecteur :</label>
+                            <select name="inspecteur_id" id="inspecteur_id" class="form-control">
+                                <option value="">Tous les inspecteurs</option>
+                                @foreach ($inspecteurs as $inspecteur)
+                                    <option value="{{ $inspecteur->id }}" {{ $inspecteur->id == $inspecteur_id ? 'selected' : '' }}>
+                                        {{ $inspecteur->nom }} {{ $inspecteur->prenom }}</option>
+                                @endforeach
+                            </select>
+                        </div>
 
-                <!-- Filtre par date de début -->
-                <div class="col-md">
-                    <label for="date_debut" class="form-label">Date de début :</label>
-                    <input type="date" name="date_debut" id="date_debut" class="form-control"
-                        value="{{ $date_debut }}">
-                </div>
+                        <!-- Filtre par date de début -->
+                        <div class="col-md">
+                            <label for="date_debut" class="form-label">Date de début :</label>
+                            <input type="date" name="date_debut" id="date_debut" class="form-control"
+                                value="{{ $date_debut }}">
+                        </div>
 
-                <!-- Filtre par date de fin -->
-                <div class="col-md">
-                    <label for="date_fin" class="form-label">Date de fin :</label>
-                    <input type="date" name="date_fin" id="date_fin" class="form-control" value="{{ $date_fin }}">
-                </div>
+                        <!-- Filtre par date de fin -->
+                        <div class="col-md">
+                            <label for="date_fin" class="form-label">Date de fin :</label>
+                            <input type="date" name="date_fin" id="date_fin" class="form-control" value="{{ $date_fin }}">
+                        </div>
 
-                <!-- Bouton de soumission -->
-                <div class="col-md-auto">
-                    <button type="submit" class="btn btn-primary">Filtrer</button>
-                    <a href="{{ route('statistiques.tournees') }}" class="btn btn-secondary">Réinitialiser</a>
-                </div>
-            </div>
-        </form>
+                        <!-- Bouton de soumission -->
+                        <div class="col-md-auto">
+                            <button type="submit" class="btn btn-primary">Filtrer</button>
+                            <a href="{{ route('statistiques.tournees') }}" class="btn btn-secondary">Réinitialiser</a>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
 
@@ -93,8 +96,9 @@
 
         <!-- Camembert et Tableau -->
         <div class="row mt-3">
+
             <!-- Camembert -->
-            <div class="card shadow col-4">
+            <div class="card col-4 shadow p-0">
                 <div class="card-header">
                     <h2>Statistiques des signatures</h2>
                 </div>
@@ -104,29 +108,31 @@
             </div>
 
             <!-- Tableau des 5 dernières prospections -->
-            <div class="card shadow col-lg-8">
-                <div class="card-header">
-                    <h2>5 dernières prospections</h2>
-                </div>
-                <div class="card-body">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Adresse</th>
-                                <th>État</th>
-                                <th>Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($prospections as $prospection)
+            <div class="col-lg-8">
+                <div class="card shadow p-0">
+                    <div class="card-header">
+                        <h2>6 dernières prospections</h2>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped table-inverse  dt-responsive nowrap">
+                            <thead class="thead-inverse">
                                 <tr>
-                                    <td>{{ $prospection->adresse_complet }}</td>
-                                    <td>{{ $prospection->etat }}</td>
-                                    <td>{{ $prospection->date }}</td>
+                                    <th>Adresse</th>
+                                    <th>État</th>
+                                    <th>Date</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach ($prospections as $prospection)
+                                    <tr>
+                                        <td>{{ $prospection->adresse_complet }}</td>
+                                        <td>{{ $prospection->etat }}</td>
+                                        <td>{{ $prospection->date }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
@@ -186,9 +192,9 @@
         function generatePieChart() {
             var ctxCamembert = document.getElementById('camembert');
             var pieChartData = JSON.parse(ctxCamembert.dataset.piechart);
-    
+
             var pieData = Object.values(pieChartData); // Convertir les valeurs de pieChartData en tableau
-    
+
             new Chart(ctxCamembert, {
                 type: 'pie',
                 data: {
@@ -197,18 +203,22 @@
                         data: pieData, // Utiliser les valeurs converties en tableau
                         backgroundColor: [
                             'rgba(162, 200, 67, 0.5)', // Couleur pour l'état "Programmé"
-                            'rgba(192, 25, 191, 0.5)' // Couleur pour l'état "Effectué"
+                            'rgba(192, 25, 191, 0.5)', // Couleur pour l'état "Effectué"
+                            '#ff8200', // Couleur pour l'état "Effectué"
+                            '#94838b' // Couleur pour l'état "Effectué"
                         ],
                         borderColor: [
-                            'rgba(162, 200, 67, 1.5)', // Couleur pour l'état "Programmé"
-                            'rgba(192, 25, 191, 1.5)' // Couleur pour l'état "Effectué"
+                            'rgba(162, 200, 67, 0.5)', // Couleur pour l'état "Programmé"
+                            'rgba(192, 25, 191, 0.5)', // Couleur pour l'état "Effectué"
+                            '#ff8200', // Couleur pour l'état "Effectué"
+                            '#94838b' // Couleur pour l'état "Effectué"
                         ],
                         borderWidth: 1
                     }]
                 }
             });
         }
-    
+
         // Appel des fonctions pour générer les graphiques
         generateHistogram();
         generatePieChart();

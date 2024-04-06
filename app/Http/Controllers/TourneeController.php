@@ -20,7 +20,7 @@ class TourneeController extends Controller {
                 "start" => now()->parse($tournee->date)->format("Y-m-d"), // a property!
                 "color" => $color,
                 "extendedProps" => [
-                   "auteur" => $tournee->inspecteur->nom . ' ' . $tournee->inspecteur->prenom,
+                   "auteur" => $tournee->inspecteur?->nom . ' ' . $tournee->inspecteur?->prenom,
                    "maison" => $tournee->adresse_complet,
                    "heure" => now()->parse($tournee->date)->format("h:m"),
                 ]
