@@ -143,7 +143,6 @@
     <script>
         var data = @json($data);
         var data_semaine = @json($data_semaine);
-        console.log(data_semaine);
     </script>
 
     <!--Morris Chart-->
