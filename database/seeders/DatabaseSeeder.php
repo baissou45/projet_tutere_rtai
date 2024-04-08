@@ -59,6 +59,7 @@ class DatabaseSeeder extends Seeder
                     'created_at' => $tournee->date,
                     'tournee_id' => $tournee->id,
                     'inspecteur_id' => $tournee->inspecteur_id,
+                    'conformite' => [true, false, true][random_int(0, 2)],
                     'description' => $faker->sentence(random_int(10, 40)),
                 ]);
 

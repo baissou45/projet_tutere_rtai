@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('tournee_id');
 
             $table->boolean('signature');
+            $table->boolean('conformite');
             $table->string('fichier_joint')->nullable();
             $table->text('description')->nullable();
 

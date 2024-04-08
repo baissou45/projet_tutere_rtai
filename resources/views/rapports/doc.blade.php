@@ -43,24 +43,26 @@
             <tr>
                 <td>Locataire</td>
                 <td></td>
-            <tr>
             </tr>
             <tr>
                 <td>Date rapport</td>
                 <td> {{ $rapport->created_at }} </td>
-            <tr>
             </tr>
             <tr>
                 <td>Adresse</td>
                 <td> {{ $tournee->adresse_complet }} </td>
-            <tr>
             </tr>
             <tr>
                 <td>Signé</td>
                 <td style="color: {{ $rapport->signature ? "green" : "red" }}; font-weight: bold">
                     {{ $rapport->signature ? 'Rapport signé' : 'Rapport non signé' }}
                 </td>
+            </tr>
             <tr>
+                <td>Conformite RE 2020</td>
+                <td style="color: {{ $rapport->signature ? "green" : "red" }}; font-weight: bold">
+                    {{ $rapport->conformite ? "Conforme RE 2020" : "Non conforme RE 2020" }}
+                </td>
             </tr>
             <tr>
                 <td>Commentaire</td>

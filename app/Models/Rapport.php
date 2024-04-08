@@ -13,6 +13,7 @@ class Rapport extends Model {
         "inspecteur_id",
         "tournee_id",
         "signature",
+        "conformite",
         "fichier_joint",
         "description",
     ];

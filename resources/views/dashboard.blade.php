@@ -105,6 +105,7 @@
                     <th> Tournée </th>
                     <th> Signature </th>
                     <th class="col-4"> Description </th>
+                    <th> Conformite </th>
                     <th> Date Création </th>
                     <th> Action </th>
                 </tr>
@@ -120,6 +121,11 @@
                         </td>
                         <td> {{ $rapport->signature ? "Oui" : "Non" }} </td>
                         <td> {{ $rapport->description }} </td>
+                        <td>
+                            <span class="badge badge-{{ $rapport->conformite ? "success" : "danger" }} py-2 px-3">
+                                {{ $rapport->conformite ? "Conforme RE 2020" : "Non conforme RE 2020" }}
+                            </span>
+                        </td>
                         <td> {{ $rapport->created_at }} </td>
                         <td class="d-flex justify-content-center border-0">
                             <a target="_blanc" href="{{ route('rapports.generate_pdf', $rapport->id) }}"> <i class="fa fa-file-pdf-o fa-2x text-danger" aria-hidden="true"></i> </a>

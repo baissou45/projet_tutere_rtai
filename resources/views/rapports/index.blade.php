@@ -53,6 +53,7 @@
                                 <th> Inspecteur </th>
                                 <th> Tournée </th>
                                 <th> Signature </th>
+                                <th> Conformite RE 2020 </th>
                                 <th class="col-4"> Description </th>
                                 <th> Action </th>
                             </tr>
@@ -70,6 +71,11 @@
                                         <i class="fa fa-home text-success"></i> : {{ $rapport->tournee->adresse_complet }}
                                     </td>
                                     <td> {{ $rapport->signature ? "Oui" : "Non" }} </td>
+                                    <td>
+                                        <span class="badge badge-{{ $rapport->conformite ? "success" : "danger" }} py-2 px-3">
+                                            {{ $rapport->conformite ? "Conforme RE 2020" : "Non conforme RE 2020" }}
+                                        </span>
+                                    </td>
                                     <td> {{ $rapport->description }} </td>
                                     <td class="d-flex justify-content-around">
                                         <a target="_blanc" href="{{ route('rapports.generate_pdf', $rapport->id) }}"> <i class="fa fa-file-pdf-o fa-2x text-danger" aria-hidden="true"></i> </a>
