@@ -14,29 +14,13 @@ use Illuminate\Support\Str;
 class UserController extends Controller {
 
     public function index() {
-        $users = User::where('type', 's')->get();
+        $users = User::all();
         return view("users.index", compact('users'));
-    }
-
-    public function inspecteur() {
-        $users = User::query()->where('type', 'i');
-
-        if (auth()->user()->type == 's') {
-            $users->where('secretaire_id', auth()->user()->id)->orWhereHas('inspecteur_tranferts', function($s){
-                return $s->where('secretaire_id', auth()->user()->id)->where('date_debut', '<=', now())->where('date_fin', '>=', now());
-            });
-        }
-
-        $users = $users->get();
-
-        $secretaires = User::where('type', 's')->get();
-        return view("users.inspecteur", compact('users', 'secretaires'));
     }
 
     public function create() {
         $user = null;
-        $secretaires = User::where('type', 's')->get();
-        return view('users.create', compact('user', "secretaires"));
+        return view('users.create', compact('user'));
     }
 
     public function store(Request $request) {
@@ -78,25 +62,11 @@ class UserController extends Controller {
         return redirect()->route($redirectRoute)->with('success', $successMessage);
     }
 
-    public function inspecteur_affectatiion(Request $request) {
-
-        Transfert::create([
-            "inspecteur_id" => $request->inspecteur,
-            "secretaire_id" => $request->secretaire,
-            "date_debut" => $request->debut,
-            "date_fin" => $request->fin,
-            "description" => $request->description,
-        ]);
-
-        return redirect()->back()->with("success", "Inspecteur tranférer avec succès");
-    }
-
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(User $user) {
-        $secretaires = User::where('type', 's')->get();
-        return view('users.edit', compact('user', "secretaires"));
+        return view('users.edit', compact('user'));
     }
 
     /**

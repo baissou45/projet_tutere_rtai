@@ -32,13 +32,6 @@ class AuthController extends Controller {
         try {
             $user = User::where("email", $request->login)->orWhere("tel", $request->login)->first();
 
-            if ($user->type != 'i') {
-                return response()->json([
-                    "message" => "Désolé !! Vous n'êtes pas habilité à accéder à ce contenu",
-                    "data" => null
-                ], 403);
-            }
-
             if(password_verify($request->password, $user->password)){
                 $user->tokens()->delete();
 

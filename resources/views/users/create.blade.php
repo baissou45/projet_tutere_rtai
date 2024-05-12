@@ -32,7 +32,7 @@
         </div>
         <div class="card-footer d-flex justify-content-end">
             <button class="btn btn-danger" type="reset"> Annuler </button>
-            <button class="btn btn-pink mx-3" type="submit"> Enregistrer </button>
+            <button class="btn btn-primary mx-3" type="submit"> Enregistrer </button>
         </div>
     </div>
 

@@ -41,7 +41,6 @@ class LoginRequest extends FormRequest
     public function authenticate(): void
     {
         $this->ensureIsNotRateLimited();
-        $this->inspecteurAccessControle();
 
         if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
@@ -83,16 +82,6 @@ class LoginRequest extends FormRequest
     public function throttleKey(): string
     {
         return Str::transliterate(Str::lower($this->input('email')).'|'.$this->ip());
-    }
-
-
-    public function inspecteurAccessControle() {
-        $user = User::where('email', $this->email)->first();
-        if (!$user || $user->type == 'i') {
-            throw ValidationException::withMessages([
-                'email' => trans("Vous n'êtes pas habilité à accéder à cette application"),
-            ]);
-        }
     }
 
 }

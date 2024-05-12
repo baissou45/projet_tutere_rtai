@@ -15,7 +15,7 @@
                     {{-- <img src="{{ asset(auth()->user()->get_profil_img() ?? 'template/back/assets/images/users/avatar-1.jpg') }}" alt="user" class="rounded-circle"> --}}
                 </a>
                 <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
-                    <a class="dropdown-item" href="{{ route('profile.edit') }}"><i class="dripicons-user text-muted"></i> Profile</a>
+                    <a class="dropdown-item" href="#"><i class="dripicons-user text-muted"></i> Profile</a>
                     <form action="{{ route('logout') }}" method="post" id="dec_form">
                         @csrf
 

@@ -1,5 +1,6 @@
 @section("css")
     <link href="{{ asset('template/back/assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
+
     <style>
         .select2-selection__rendered {
             line-height: 33px !important;

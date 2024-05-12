@@ -24,13 +24,11 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            "nom" => $this->faker->lastName,
-            "prenom" => $this->faker->firstName,
+            "nom_complet" => $this->faker->lastName . ' ' . $this->faker->firstName,
             "password" => bcrypt('aaaaaaaa'),
-            "sexe" => ['h', 'f'][random_int(0, 1)],
             "tel" => $this->faker->phoneNumber,
-            "email" => $this->faker->email,
-            "type" => ['s', 'i', 'i', 'i'][random_int(0, 3)],
+            // "email" => $this->faker->email,
+            "email" => "a@a.aa",
         ];
     }
 

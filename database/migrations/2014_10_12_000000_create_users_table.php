@@ -13,14 +13,10 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
-            $table->string('prenom');
+            $table->string('nom_complet');
             $table->string('tel');
-            $table->enum('sexe', ['h', 'f'])->nullable();
             $table->string('email')->unique();
             $table->string('password');
-            $table->enum('type', ['s', 'i', 'a'])->nullable()->default('i')->comment('I pour inspecteur, S pour sécretaire et A pour Admin');
-            $table->foreignId('secretaire_id')->nullable();
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();

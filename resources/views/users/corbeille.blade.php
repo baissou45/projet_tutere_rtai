@@ -14,15 +14,15 @@
                     <div>
                         <p class="text-muted">
                             <strong class="text-success">Légende</strong> <br>
-                            <strong class="text-pink">Copy</strong> : Copier les données du tableau en format text <br>
-                            <strong class="text-pink">Excel</strong> : Expoeter les données du tableau au format excels (xlsx) <br>
-                            <strong class="text-pink">PDF</strong> : Expoeter les données du tableau au format pdf
+                            <strong class="text-primary">Copy</strong> : Copier les données du tableau en format text <br>
+                            <strong class="text-primary">Excel</strong> : Exporter les données du tableau au format excels (xlsx) <br>
+                            <strong class="text-primary">PDF</strong> : Exporter les données du tableau au format pdf
                         </p>
                     </div>
 
                     <div class="">
                         <div class="d-flex justify-content-end mt-3 mr-3 mb-5">
-                            <a href="{{ route('users.create') }}" class="btn btn-pink">
+                            <a href="{{ route('users.create') }}" class="btn btn-primary">
                                 <i class="fa fa-user-plus" aria-hidden="true"></i>
                                 Nouvel utilisateur
                             </a>
@@ -83,7 +83,7 @@
                                             <option value="s">Supprimer définitivement</option>
                                         </select>
 
-                                        <input type="submit" class="btn btn-pink ml-3" value="Appliquer">
+                                        <input type="submit" class="btn btn-primary ml-3" value="Appliquer">
                                     </div>
                                 </td>
                             </tr>

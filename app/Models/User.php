@@ -18,8 +18,7 @@ class User extends Authenticatable {
      * @var array<int, string>
      */
     protected $fillable = [
-        "nom",
-        "prenom",
+        "nom_complet",
         "password",
         "sexe",
         "tel",
@@ -48,42 +47,8 @@ class User extends Authenticatable {
         'password' => 'hashed',
     ];
 
-    public function secretaire() {
-        return $this->belongsTo(User::class, "secretaire_id");
+    public function hotel() {
+        return $this->hasOne(Hotel::class);
     }
 
-    public function inspecteurs() {
-        return $this->hasMany(User::class, "secretaire_id");
-    }
-
-    // Voir l'historique des inspecteurs tranférés vers un secrétaire
-    public function tranferts_vers_moi(){
-        return $this->hasMany(Transfert::class, 'secretaire_id');
-    }
-
-    // Voir l'historique des transferts d'un inspecteur
-    public function inspecteur_tranferts(){
-        return $this->hasMany(Transfert::class, 'inspecteur_id', 'id');
-    }
-
-    // Savoir si un inspecteur est actuellement tranférer
-    public function new_inspecteur(){
-        $transferts = $this->inspecteur_tranferts;
-
-        if ($transferts->count() > 0 && now()->isBetween($transferts->last()->date_debut, $transferts->last()->date_fin)){
-            $secretaire = $transferts->last()->newSecretaire;
-            $secretaire["fin_transfert"] = now()->diffInDays($transferts->last()->date_fin);
-            return $secretaire;
-        } else {
-            return null;
-        }
-    }
-
-    public function tournees() {
-        return $this->hasMany(Tournee::class, 'inspecteur_id');
-    }
-
-    public function rapports() {
-        return $this->hasMany(Rapport::class, 'inspecteur_id');
-    }
 }
