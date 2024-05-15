@@ -11,14 +11,32 @@
         </h3>
 
         <div class="p-3">
-            <h4 class="text-muted font-18 m-b-5 text-center">Register</h4>
+            <h4 class="text-muted font-18 m-b-5 text-center">Register </h4>
+
+            @if ($errors->any())
+                <div class="alert alert-danger" role="alert">
+                    <p class="text-center"> A mistake occurred </p>
+                </div>
+            @endif
 
             <form class="form-horizontal m-t-30" action="{{ route('register') }}" method="POST">
                 @csrf
 
+                <div class="row">
+                    <div class="form-group col-12 col-md-6">
+                        <label for="first_name">First Name</label>
+                        <input type="text" class="form-control" name="first_name">
+                    </div>
+
+                    <div class="form-group col-12 col-md-6">
+                        <label for="last_name">Last Name</label>
+                        <input type="text" class="form-control" name="last_name">
+                    </div>
+                </div>
+
                 <div class="form-group">
-                    <label for="name">Full name</label>
-                    <input type="text" class="form-control" name="name">
+                    <label for="tel">Phone number</label>
+                    <input type="tel" class="form-control" name="tel">
                 </div>
 
                 <div class="form-group">

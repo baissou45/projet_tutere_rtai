@@ -24,7 +24,8 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            "nom_complet" => $this->faker->lastName . ' ' . $this->faker->firstName,
+            "first_name" => $this->faker->firstName,
+            "last_name" => $this->faker->lastName,
             "password" => bcrypt('aaaaaaaa'),
             "tel" => $this->faker->phoneNumber,
             // "email" => $this->faker->email,
